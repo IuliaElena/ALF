@@ -1,0 +1,38 @@
+/*
+ * Deutsch Language - ifstatement
+ * Input : 
+ * Eher a == 3
+ *   Den a-=2 €
+
+*/
+
+start
+=ifstatement/(statement)*
+
+statement
+=left:variable " = " right:integer terminator {return right}
+/left:variable " = " right:additive terminator{return right}
+/left:variable " = " right:multiplicative terminator {return right}
+/left:variable " = " right:substraction terminator{return right}
+/left:variable " = " right:division terminator{return right}
+
+ifstatement
+="Eher"[" "]*left:(variable) " == " right:(integer) "\n" [" "]* "Den"[" "]*left:(variable) "-="  right:(integer) terminator {if(left ==0) return "Das ist nich gut!"; return "Das ist gut!"}
+/"Eher"[" "]*left:(integer) " < " right:(integer) terminator {if(left>right) return "Das ist nicht gut!"; return "Das ist gut!"}
+/"Eher"[" "]*left:(variable/integer) " > " right:(variable/integer) terminator {if(left<right) return "Das ist nicht gut!"; return "Das ist gut!"}
+
+variable
+=[a-zA-Z]+
+
+additive
+=left:integer " + " right:integer {return left + right}
+substraction
+=left:integer " - " right:integer{return left - right}
+multiplicative
+=left:integer " * " right:integer {return left * right}
+division
+=left:integer " / " right:integer{return left / right}
+integer "integer"
+=digits:[0-9]+ {return parseInt(digits.join(""),10);}
+terminator
+=[" "]*"€"
