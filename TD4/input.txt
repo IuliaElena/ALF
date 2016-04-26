@@ -1,0 +1,15 @@
+Begin Bl€ah..
+
+    deutschstr s €
+    deutschin a = 0 €
+    deutschin b = 5 + 3 €
+    c = 30 €
+    eher ( a > 2 ) { a = b } 
+        noch eher (a == 2) { b = a } 
+             noch a=c €
+    j = 7 €
+    schreibe a €
+
+..End Bl€ah
+Status API Training Shop Blog About
+© 2016 GitHub, Inc. 
